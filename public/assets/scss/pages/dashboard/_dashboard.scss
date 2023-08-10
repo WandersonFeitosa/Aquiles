@@ -78,6 +78,38 @@
 
     &__main {
         padding: rem(30);
+
+        &__title {
+            font-size: rem(20);
+            margin-bottom: rem(15);
+        }
+
+        &__info {
+            display: flex;
+            justify-content: space-between;
+
+            &-item {
+                font-size: rem(15);
+                font-weight: 600;
+                margin-bottom: rem(20);
+            }
+
+            &__username {
+                font-size: rem(35);
+                font-weight: 600;
+                text-transform: capitalize;
+                margin-bottom: rem(30);
+            }
+
+            &__avatar {
+                img {
+                    width: rem(100);
+                    height: rem(100);
+                    border-radius: 50%;
+                }
+            }
+        }
+
     }
 
     &__sidebar {

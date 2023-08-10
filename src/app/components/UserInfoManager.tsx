@@ -5,8 +5,10 @@ import { useEffect } from "react";
 interface UserInfoManagerProps {
   discordUserData: {
     message: string;
-    isUserAdmin: boolean;
     userId: string;
+    isUserAdmin: boolean;
+    isUserPlayer: boolean;
+    isUserAquiles: boolean;
   };
 }
 export function UserInfoManager({ discordUserData }: UserInfoManagerProps) {
@@ -16,6 +18,17 @@ export function UserInfoManager({ discordUserData }: UserInfoManagerProps) {
     } else {
       sessionStorage.setItem("isUserAdmin", "false");
     }
+    if (discordUserData.isUserPlayer) {
+      sessionStorage.setItem("isUserPlayer", "true");
+    } else {
+      sessionStorage.setItem("isUserPlayer", "false");
+    }
+    if (discordUserData.isUserAquiles) {
+      sessionStorage.setItem("isUserAquiles", "true");
+    } else {
+      sessionStorage.setItem("isUserAquiles", "false");
+    }
+
     sessionStorage.setItem("userId", discordUserData.userId);
   }, [discordUserData]);
   return <></>;
