@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { AdminMenu } from "./AdminMenu";
+import { signOut } from "next-auth/react";
 
 export function DashboardSidebar() {
   const router = useRouter();
@@ -10,7 +11,9 @@ export function DashboardSidebar() {
 
     router.push(url);
   }
-
+  const handleLogout = () => {
+    signOut();
+  };
   return (
     <div className="dashboard__sidebar">
       <ul>
@@ -26,6 +29,7 @@ export function DashboardSidebar() {
         <li data-url="/registrar-missao" onClick={handleMenuClick}>
           Registrar missão
         </li>
+        <li onClick={handleLogout}>Logout</li>
       </ul>
       <AdminMenu />
     </div>

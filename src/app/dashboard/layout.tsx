@@ -2,6 +2,7 @@ import { DashboardSidebar } from "../components/dashboard/DashboardSidebar";
 import { getServerSession } from "next-auth";
 import { authOptions, useLoginRequiredServer } from "@/lib/auth";
 import LogoutButton from "../components/LogoutButton";
+import { UserInfoManager } from "../components/UserInfoManager";
 
 export default async function DashboardLayout({
   children, // will be a page or nested layout
@@ -25,9 +26,9 @@ export default async function DashboardLayout({
     return data;
   }
 
-  const userId = await getUserId();
+  const discordUserData = await getUserId();
 
-  if (!userId) {
+  if (!discordUserData) {
     return (
       <div className="dashboard">
         <div className="container">
@@ -49,6 +50,7 @@ export default async function DashboardLayout({
   }
   return (
     <div className="dashboard">
+      <UserInfoManager discordUserData={discordUserData} />
       <div className="dashboard__wrapper">
         <DashboardSidebar />
         {children}
