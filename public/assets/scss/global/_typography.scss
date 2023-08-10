@@ -1,10 +1,10 @@
 body,
 html {
     font-size: 16px;
+    color: $white;
 
     &,
     * {
-        color: $white;
         font-family: "Inter", sans-serif;
     }
 }

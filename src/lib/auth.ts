@@ -11,15 +11,15 @@ export const authOptions = {
   ],
 };
 
-export async function loginRequiredServer() {
+export async function useLoginRequiredServer() {
   const session = await getServerSession(authOptions);
   if (!session) return redirect("/");
 }
 
-export async function loginRequiredClient() {
+export async function useLoginRequiredClient() {
+  const router = useRouter();
   if (typeof window === "undefined") {
-    const session = await getServerSession(authOptions);
-    const router = useRouter();
+    const session = await getServerSession(authOptions);    
     if (!session) router.push("/login");
   }
 }
