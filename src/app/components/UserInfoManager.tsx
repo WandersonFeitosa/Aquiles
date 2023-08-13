@@ -1,6 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { UserInfoManagerClient } from "./UserInfoManagerClient";
 
 interface UserInfoManagerProps {
   discordUserData: {
@@ -11,25 +11,37 @@ interface UserInfoManagerProps {
     isUserAquiles: boolean;
   };
 }
-export function UserInfoManager({ discordUserData }: UserInfoManagerProps) {
-  useEffect(() => {
-    if (discordUserData.isUserAdmin) {
-      sessionStorage.setItem("isUserAdmin", "true");
-    } else {
-      sessionStorage.setItem("isUserAdmin", "false");
-    }
-    if (discordUserData.isUserPlayer) {
-      sessionStorage.setItem("isUserPlayer", "true");
-    } else {
-      sessionStorage.setItem("isUserPlayer", "false");
-    }
-    if (discordUserData.isUserAquiles) {
-      sessionStorage.setItem("isUserAquiles", "true");
-    } else {
-      sessionStorage.setItem("isUserAquiles", "false");
-    }
+export async function UserInfoManager({
+  discordUserData,
+}: UserInfoManagerProps) {
+  const publicApiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const session = await getServerSession(authOptions);
 
-    sessionStorage.setItem("userId", discordUserData.userId);
-  }, [discordUserData]);
-  return <></>;
+  if (!session) return <></>;
+
+  const dataFetch = {
+    username: session?.user?.name,
+    avatar: session?.user?.image,
+    isUserAdmin: discordUserData.isUserAdmin,
+    discordId: discordUserData.userId,
+  };
+
+  let url = "";
+  if (discordUserData.isUserPlayer) {
+    url = `${publicApiUrl}/register/player`;
+  }
+  if (discordUserData.isUserAquiles) {
+    url = `${publicApiUrl}/register/aquiles`;
+  }
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataFetch),
+  });
+  if (response.status !== 200) return <></>;
+  const data = await response.json();
+  return <UserInfoManagerClient data={data} />;
 }

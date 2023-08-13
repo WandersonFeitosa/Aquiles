@@ -8,7 +8,6 @@ export async function POST(request: Request) {
 
     await connectMongo();
 
-    console.log(discordId);
     if (!discordId)
       return NextResponse.json({
         message: "DiscordId não informado",
@@ -34,7 +33,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       message: "Usuário registrado",
-      registered: true,
+      registered: false,
       user: newPlayer,
     });
   } catch (err) {

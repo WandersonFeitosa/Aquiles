@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Player } from "../../mongo/schemas";
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   try {
     const { discordId } = await request.json();
 
