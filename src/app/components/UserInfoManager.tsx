@@ -43,5 +43,19 @@ export async function UserInfoManager({
   });
   if (response.status !== 200) return <></>;
   const data = await response.json();
-  return <UserInfoManagerClient data={data} />;
+
+  let playerType;
+  if (discordUserData.isUserPlayer) {
+    playerType = "player";
+  }
+  if (discordUserData.isUserAquiles) {
+    playerType = "aquiles";
+  }
+  //itera a const data com o playerType
+  const dataWithPlayerType = {
+    ...data,
+    playerType,
+  };
+
+  return <UserInfoManagerClient data={dataWithPlayerType} />;
 }

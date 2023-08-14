@@ -110,6 +110,90 @@
             }
         }
 
+
+
+        &__vip {
+
+            &__title {
+                font-size: rem(30);
+                margin-bottom: rem(30);
+            }
+
+            &__desc {
+                font-size: rem(15);
+                margin-bottom: rem(30);
+            }
+
+            &__button {
+                width: rem(300);
+                padding: rem(10);
+                border: 1px solid $white;
+                border-radius: rem(5);
+                background: transparent;
+                color: $white;
+                font-size: rem(15);
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    background: $white;
+                    color: #000 !important;
+                }
+            }
+
+            &__link {
+                margin-top: rem(50);
+
+                p {
+                    font-size: rem(15);
+                    margin-bottom: rem(15);
+                }
+
+                a {
+                    color: $white;
+                    font-size: rem(15);
+                    transition: all 0.3s ease-in-out;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            &__form {
+                display: flex;
+                flex-direction: column;
+                margin-top: rem(30);
+
+                &__title {
+                    font-size: rem(20);
+                    margin-bottom: rem(15);
+                }
+
+
+
+                input,
+                select {
+                    width: rem(300);
+                    padding: rem(10);
+                    border: 1px solid $white;
+                    border-radius: rem(5);
+                    margin-bottom: rem(15);
+                    background: transparent;
+                    color: $white;
+                    font-size: rem(15);
+                    transition: all 0.3s ease-in-out;
+                }
+
+                select {
+                    option {
+                        background: #000;
+                        color: $white;
+                    }
+                }
+            }
+        }
+
     }
 
     &__sidebar {

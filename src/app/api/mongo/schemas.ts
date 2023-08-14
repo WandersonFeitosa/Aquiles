@@ -6,6 +6,12 @@ const PlayerSchema = new mongoose.Schema({
   avatar: String,
   familyId: String,
   isUserAdmin: Boolean,
+  vip: {
+    status: Boolean,
+    lastTxid: String,
+    lastQrCodeUrl: String,
+    lastTxidStatus: String,
+  },
   familyInvites: [String],
 });
 const AquilesSchema = new mongoose.Schema({
@@ -14,6 +20,12 @@ const AquilesSchema = new mongoose.Schema({
   family: String,
   isUserAdmin: Boolean,
   discordId: String,
+  vip: {
+    status: Boolean,
+    lastTxid: String,
+    lastQrCodeUrl: String,
+    lastTxidStatus: String,
+  },
   familyInvites: [String],
   completedMissions: [
     {

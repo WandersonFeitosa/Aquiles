@@ -12,6 +12,7 @@ export function DashboardSidebar() {
     router.push(url);
   }
   const handleLogout = () => {
+    sessionStorage.removeItem("user");
     signOut();
   };
   return (
@@ -28,6 +29,9 @@ export function DashboardSidebar() {
         </li>
         <li data-url="/registrar-missao" onClick={handleMenuClick}>
           Registrar missão
+        </li>
+        <li data-url="/vip" onClick={handleMenuClick}>
+          Vip
         </li>
         <li onClick={handleLogout}>Logout</li>
       </ul>
